@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: demo
+  name: upg-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: upg-app-deployment
+              servicePort: 8081
